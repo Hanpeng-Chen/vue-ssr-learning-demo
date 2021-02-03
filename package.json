@@ -11,6 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
+    "koa": "^2.13.1",
+    "koa-router": "^10.0.0",
     "vue": "^2.6.11",
     "vue-router": "^3.3.4",
     "vue-server-renderer": "^2.6.11",

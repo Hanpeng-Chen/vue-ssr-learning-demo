@@ -1,32 +1,33 @@
-const server = require('express')()
-const Vue = require('vue')
+const Koa = require("koa");
+const Router = require("koa-router");
+const app = new Koa();
+const router = new Router();
+
+const Vue = require("vue");
+const VueServerRenderer = require("vue-server-renderer");
 const fs = require('fs')
-const createApp = require('./src/app')
+const path = require('path')
 
-const Renderer = require('vue-server-renderer').createRenderer({
-  template: fs.readFileSync('./src/index.template.html', 'utf-8')
+const vm = new Vue({
+  data: {
+    message: 'hello world'
+  },
+  template: '<div>{{message}}</div>'
 })
 
-server.get('*', (req, res) => {
+// 获取模板
+const template = fs.readFileSync(path.resolve(__dirname, './src/index.template.html'), 'utf-8')
 
-  const params = { url: req.url }
-  const app = createApp(params)
+router.get("/", async (ctx) => {
+  // ctx.body = "<div>hello world!</div>";
+  ctx.body = await VueServerRenderer.createRenderer({
+    template
+  }).renderToString(vm);
+});
 
-  const context = {
-    title: 'SSR Demo',
-    metas: `
-      <meta name="keyword" content="vue,ssr">
-      <meta name="description" content="vue srr demo">
-    `
-  }
+// 将路由注册到应用上
+app.use(router.routes());
 
-  Renderer.renderToString(app, context, (err, html) => {
-    if (err) {
-      console.error(err)
-      res.status(500).end('server error')
-    }
-    res.end(html)
-  })
-})
-
-server.listen(8080)
+app.listen(3000, function () {
+  console.log("server start port 3000");
+});
