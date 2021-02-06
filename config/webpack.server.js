@@ -17,6 +17,7 @@ module.exports = merge(base, {
       filename: "server.html",
       excludeChunks: ["server"],
       minify: false, // 不压缩
+      client: '/client.bundle.js'
     }),
   ],
 });
