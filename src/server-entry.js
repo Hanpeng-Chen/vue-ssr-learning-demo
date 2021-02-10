@@ -3,6 +3,6 @@
 import createApp from "./app.js";
 
 export default () => {
-  let { app } = createApp();
+  let { app, router } = createApp();
   return app;
 };
