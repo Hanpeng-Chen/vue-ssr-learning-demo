@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Foo from "./components/Foo.vue";
+import Bar from "./components/Bar.vue";
 
 Vue.use(VueRouter);
 
@@ -11,8 +12,8 @@ export default () => {
     mode: "history",
     routes: [
       { path: "/", component: Foo },
-      { path: "/bar", component: () => import("./components/Bar.vue") },
+      { path: "/bar", component: Bar },
     ],
   });
-  return router
+  return router;
 };

@@ -2,8 +2,7 @@
 node_modules
 
 # 编译后的文件以下两个目录
-/dist/web
-/dist/api
+/dist
 
 # Log files
 npm-debug.log*
