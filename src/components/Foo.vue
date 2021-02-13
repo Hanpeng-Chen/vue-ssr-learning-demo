@@ -1,5 +1,10 @@
 <template>
-  <div @click="alert">foo</div>
+  <div @click="alert">
+    <div>foo</div>
+    
+    <!-- <div>{{$store.state.name}}</div>
+    <button @click="$store.dispatch('changeName')">修改</button> -->
+  </div>
 </template>
 
 <script>
